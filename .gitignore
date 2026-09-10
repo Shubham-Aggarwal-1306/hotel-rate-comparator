@@ -1,0 +1,9 @@
+node_modules/
+dist/
+build/
+.temporal.db*
+*.log
+.DS_Store
+.env
+coverage/
+*.tsbuildinfo

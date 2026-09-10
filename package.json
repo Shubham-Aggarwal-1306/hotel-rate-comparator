@@ -1,0 +1,30 @@
+{
+  "name": "hotel-rate-comparator",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Hotel rate comparator powered by Temporal workflows",
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "dev": "concurrently -n suppliers,api,worker,web -c magenta,cyan,yellow,green \"npm run dev:suppliers\" \"npm run dev:api\" \"npm run dev:worker\" \"npm run dev:frontend\"",
+    "stack": "concurrently -n stack,web -c cyan,green \"npm run -w backend dev:stack\" \"npm run dev:frontend\"",
+    "dev:suppliers": "npm run -w backend dev:suppliers",
+    "dev:api": "npm run -w backend dev:api",
+    "dev:worker": "npm run -w backend dev:worker",
+    "dev:frontend": "npm run -w frontend dev",
+    "temporal:dev": "temporal server start-dev --db-filename .temporal.db --ui-port 8233",
+    "build": "npm run -w backend build && npm run -w frontend build",
+    "test": "npm run -w backend test",
+    "test:unit": "npm run -w backend test:unit",
+    "test:workflow": "npm run -w backend test:workflow",
+    "lint": "npm run -w backend typecheck && npm run -w frontend typecheck"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
